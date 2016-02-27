@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_id": "brewityourself-android",
+    "project_number": "170001736405",
+    "name": "BrewItYourSelf-Android"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170001736405:android:050567672235c70e",
+        "client_id": "android:com.brewityourself.android",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.brewityourself.android"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 2,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 1
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}

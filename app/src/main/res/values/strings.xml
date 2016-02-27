@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BrewItYourSelf-Android</string>
+    <string name="action_settings">Settings</string>
+    <string name="gcm_defaultSenderId">170001736405</string>
+
+    <string-array name="app_options">
+        <item>Brew Data</item>
+        <item>Input Option</item>
+    </string-array>
+</resources>
