@@ -2,9 +2,15 @@
     <string name="app_name">BrewItYourSelf-Android</string>
     <string name="action_settings">Settings</string>
     <string name="gcm_defaultSenderId">170001736405</string>
+    <string name="brewdata_title">Brew Data</string>
+    <string name="brewrecipe_title">Brew Recipe</string>
+    <string name="brewlistview_title">Brew Lists</string>
+    <string name="submit_text">Submit</string>
 
     <string-array name="app_options">
         <item>Brew Data</item>
         <item>Input Option</item>
+        <item>Brew Recipes</item>
+        <item>Start Brew</item>
     </string-array>
 </resources>

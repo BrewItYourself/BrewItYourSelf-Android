@@ -16,11 +16,11 @@ public interface BrewLogAPI {
 
     /**
      * Get BrewLog from server with brewLog
-     * @param brewLog
+     * @param brewid ID to get
      * @return List of BrewLogs
      */
     @GET("/brewlog/{brewid}")
-    Call<BrewLog> getBrewData(@Path("brewid") BrewLog brewLog);
+    Call<BrewLog> getBrewData(@Path("brewid") int brewid);
 
     /**
      * Gets Brew title for all existing brews

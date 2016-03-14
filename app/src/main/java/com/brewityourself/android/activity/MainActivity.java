@@ -1,21 +1,19 @@
-package com.brewityourself.android;
+package com.brewityourself.android.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.brewityourself.android.fragment.BrewStatusViewFragment;
+import com.brewityourself.android.R;
 import com.brewityourself.android.fragment.MainFragment;
 import com.brewityourself.android.gcm.RegistrationIntentService;
 import com.brewityourself.android.server.api.BrewLogAPI;
+import com.brewityourself.android.server.api.BrewRecipeAPI;
 import com.brewityourself.android.util.Constants;
 
 import retrofit.JacksonConverterFactory;
@@ -24,8 +22,9 @@ import retrofit.Retrofit;
 public class MainActivity extends AppCompatActivity {
 
     protected FragmentManager fragmentManager;
-    protected int fragmentContentFrame;
+    private int fragmentFrameId;
     public final BrewLogAPI brewLogAPI;
+    public final BrewRecipeAPI brewRecipeAPI;
 
     public MainActivity() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -34,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         brewLogAPI = retrofit.create(BrewLogAPI.class);
+        brewRecipeAPI = retrofit.create(BrewRecipeAPI.class);
+
+        fragmentManager = getSupportFragmentManager();
+        fragmentFrameId = R.id.content_frame;
     }
 
     @Override
@@ -41,45 +44,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
         /**
          * Setup GCM registration
          */
         Intent intent = new Intent(this, RegistrationIntentService.class);
         startService(intent);
 
-        /**
-         * Set up Fragment view and first fragment
-         */
-        fragmentManager = getSupportFragmentManager();
-        fragmentContentFrame = R.id.content_frame;
         setFirstFragment();
     }
 
     private void setFirstFragment() {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(fragmentContentFrame, new MainFragment(), Constants.MAIN_FRAGMENT_TAG);
-        fragmentTransaction.addToBackStack(Constants.MAIN_FRAGMENT_TAG);
-
+        fragmentTransaction.add(fragmentFrameId, new MainFragment(), Constants.MAIN_FRAGMENT_TAG);
         fragmentTransaction.commit();
     }
 
-
-    public void switchFragment() {
+    public void switchFragment(String currentTag, Fragment fragment) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(fragmentContentFrame, new BrewStatusViewFragment());
-        fragmentTransaction.addToBackStack(Constants.BREW_STATUS_VIEW_FRAGMENT_TAG);
+        fragmentTransaction.replace(fragmentFrameId, fragment, currentTag);
+        fragmentTransaction.addToBackStack(currentTag);
+
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -102,5 +87,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            fragmentManager.popBackStackImmediate();
+        } else {
+            super.onBackPressed();
+        }
     }
 }
