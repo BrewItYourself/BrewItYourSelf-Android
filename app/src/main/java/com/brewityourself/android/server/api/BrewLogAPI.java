@@ -1,12 +1,15 @@
 package com.brewityourself.android.server.api;
 
 import com.brewityourself.android.server.dto.BrewLog;
+import com.brewityourself.android.server.dto.BrewRecipe;
 
 import java.util.List;
 
 import retrofit.Call;
+import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.Headers;
+import retrofit.http.PUT;
 import retrofit.http.Path;
 
 /**
@@ -19,6 +22,7 @@ public interface BrewLogAPI {
      * @param brewid ID to get
      * @return List of BrewLogs
      */
+    @Headers({"Content-Type: application/json", "Cache-Control: no-cache"})
     @GET("/brewlog/{brewid}")
     Call<BrewLog> getBrewData(@Path("brewid") int brewid);
 
@@ -26,8 +30,22 @@ public interface BrewLogAPI {
      * Gets Brew title for all existing brews
      * @return list of brews
      */
+    @Headers({"Content-Type: application/json", "Cache-Control: no-cache"})
     @GET("/brewlog/allbrews")
     Call<List<String>> getBrews();
+
+    /**
+     * Starts a brew process
+     * @param brewRecipe BrewRecipe to start brew
+     * @return
+     */
+    @Headers({"Content-Type: application/json", "Cache-Control: no-cache"})
+    @PUT("/brewlog/start")
+    Call<Void> startBrew(@Body BrewRecipe brewRecipe);
+
+    @Headers({"Content-Type: application/json", "Cache-Control: no-cache"})
+    @PUT("/brewlog/heat")
+    Call<Void> startHeat(@Body boolean start);
 
     /**
      * Test connection for brewlog

@@ -1,6 +1,5 @@
 package com.brewityourself.android.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.brewityourself.android.R;
-import com.brewityourself.android.activity.BrewViewActivity;
 import com.brewityourself.android.util.Constants;
 
 /**
@@ -36,21 +34,27 @@ public class MainFragment extends BrewFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+//                if (position == 0) {
+//                    brewActivity.switchFragment(
+//                            Constants.BREW_DATA_VIEW_FRAGMENT_TAG,
+//                            new BrewDataViewFragment());
+//                } else if (position == 1) {
+//                    brewActivity.switchFragment(
+//                            Constants.BREW_LIST_VIEW_FRAGMENT_TAG,
+//                            new BrewListViewFragment());
+//                } else if (position == 2) {
+//                    brewActivity.switchFragment(
+//                            Constants.BREW_RECIPE_INPUT_FRAGMENT_TAG,
+//                            new BrewRecipeInputFragment());
+//                }
                 if (position == 0) {
-                    mainActivity.switchFragment(
-                            Constants.BREW_DATA_VIEW_FRAGMENT_TAG,
-                            new BrewDataViewFragment());
+                    brewActivity.switchFragment(
+                            Constants.BREW_START_FRAGMENT_TAG,
+                            new BrewStartFragment());
                 } else if (position == 1) {
-                    mainActivity.switchFragment(
-                            Constants.BREW_LIST_VIEW_FRAGMENT_TAG,
-                            new BrewListViewFragment());
-                } else if (position == 2) {
-                    mainActivity.switchFragment(
-                            Constants.BREW_RECIPE_INPUT_FRAGMENT_TAG,
-                            new BrewRecipeInputFragment());
-                } else if (position == 3) {
-                    Intent intent = new Intent(getContext(), BrewViewActivity.class);
-                    startActivity(intent);
+                    brewActivity.switchFragment(
+                            Constants.BREW_STATUS_VIEW_FRAGMENT_TAG,
+                            new BrewStatusViewFragment());
                 }
             }
         });

@@ -27,7 +27,6 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.brewityourself.android.activity.BrewViewActivity;
-import com.brewityourself.android.util.BrewState;
 import com.google.android.gms.gcm.GcmListenerService;
 
 public class BrewGCMListenerService extends GcmListenerService {
@@ -82,9 +81,11 @@ public class BrewGCMListenerService extends GcmListenerService {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
-        if (message == BrewState.FINISHED.name()){
-
-        }
+//        if (message.equals(BrewState.FINISHED.name())){
+//            intent.putExtra(Constants.BREW_IN_PROGRESS, false);
+//        } else {
+//            intent.putExtra(Constants.BREW_IN_PROGRESS, true);
+//        }
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)

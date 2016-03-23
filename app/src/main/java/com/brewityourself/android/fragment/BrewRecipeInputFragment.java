@@ -39,7 +39,7 @@ public class BrewRecipeInputFragment extends BrewFragment {
                 brewRecipe.setBoilTemperature(100.0);
                 brewRecipe.setRecipeName("Pale Ale");
 
-                Call<Void> inputCall =  mainActivity.brewRecipeAPI.inputRecipe(brewRecipe);
+                Call<Void> inputCall =  brewActivity.brewRecipeAPI.inputRecipe(brewRecipe);
                 inputCall.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Response<Void> response, Retrofit retrofit) {

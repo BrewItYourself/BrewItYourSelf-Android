@@ -6,11 +6,20 @@
     <string name="brewrecipe_title">Brew Recipe</string>
     <string name="brewlistview_title">Brew Lists</string>
     <string name="submit_text">Submit</string>
+    <string name="start_text">Start</string>
+    <string name="graphViewTitle">Graph View</string>
+    <string name="fetch_text">Fetch</string>
+    <string name="brew_name_title_text">Brew Name</string>
+    <string name="recipe_name_text">Recipe Name</string>
+    <string name="create_new_brew_recipe_text">Create New Brew</string>
+    <string name="start_brew_title_text">Control Brew</string>
+    <string name="start_fetch_text">Start Recording</string>
 
     <string-array name="app_options">
-        <item>Brew Data</item>
-        <item>Input Option</item>
-        <item>Brew Recipes</item>
-        <item>Start Brew</item>
+        <!--<item>Brew Data</item>-->
+        <!--<item>Input Option</item>-->
+        <!--<item>Brew Recipes</item>-->
+        <item>Brew Start</item>
+        <item>Brew Status</item>
     </string-array>
 </resources>

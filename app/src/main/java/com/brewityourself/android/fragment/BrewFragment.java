@@ -3,6 +3,8 @@ package com.brewityourself.android.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
+import com.brewityourself.android.activity.BrewActivity;
+import com.brewityourself.android.activity.BrewViewActivity;
 import com.brewityourself.android.activity.MainActivity;
 
 /**
@@ -10,7 +12,7 @@ import com.brewityourself.android.activity.MainActivity;
  */
 public class BrewFragment extends Fragment {
 
-    protected MainActivity mainActivity;
+    public BrewActivity brewActivity;
     public BrewFragment() {
         super();
     }
@@ -18,6 +20,10 @@ public class BrewFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainActivity = (MainActivity) getActivity();
+        if (getActivity().getClass().equals(MainActivity.class)) {
+            brewActivity = (MainActivity) getActivity();
+        } else {
+            brewActivity = (BrewViewActivity) getActivity();
+        }
     }
 }
